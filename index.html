@@ -21,6 +21,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <!--end Materialize cdn-->
 </head>
+<<<<<<< HEAD
 
 <body>
   <div id="fb-root">
@@ -46,6 +47,13 @@
       </div>
     </nav>
     <!--end Navbar-->
+=======
+<body>  
+  
+  <div id = "lyric">
+
+  </div>
+>>>>>>> vue
 
     <!--Home-->
     <!-- Modal Login -->
@@ -54,18 +62,12 @@
     <!--end Modal Login-->
 
     <!--content-->
-<<<<<<< HEAD
     <div class="row" v-if="localStorageToken">
-=======
-    <div class="row">
-     
->>>>>>> upload client
       <!--Form upload music-->
       <upload-music @newmusic="getMusic"></upload-music>
        <!--end form upload music-->
             
           <!--Get song here-->
-<<<<<<< HEAD
           <div class="col s12 m12 l12">
             <div class="row center">
               <div class="card blue-grey darken-1" style="margin-left:10px;">
@@ -83,11 +85,9 @@
                 </div>
               </div>
             </div>
-=======
             <playlist :music="music"></playlist>
             <!--end get song-->
 
->>>>>>> upload client
             <!--Get Lyrics here-->
             <get-lyric @get-lyrics = "getLyric"></get-lyric>
             <!--end get lyrics-->

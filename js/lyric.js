@@ -34,3 +34,12 @@ Vue.component('uploaded-music', {
   `
 })
 
+Vue.component('lyric',{
+  data: function(){
+    return {
+      title: null,
+      artist: null,
+      lyric: null
+    }
+  }
+}) 
