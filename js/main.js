@@ -5,7 +5,10 @@ var app = new Vue({
     localStorageToken: localStorage.getItem("token"),
     artist: "slipknot",
     title: "duality",
-    music: {}
+    playlists: []
+  },
+  created () {
+    this.getPlaylist()
   },
   methods: {
     logout() {
@@ -18,7 +21,6 @@ var app = new Vue({
         artist: this.artist,
         title: this.title
       }
-      console.log(body)
       axios
         .post(
           `${url}/music/lyric`,
@@ -32,9 +34,22 @@ var app = new Vue({
           console.log(error)
         })
     },
+    getPlaylist: function () {
+      axios({
+          url: `http://localhost:3000/music/playlist`,
+          headers: {
+              'access-token': localStorage.getItem('token')
+          }
+      })
+      .then(({ data }) => {
+          this.playlists = data
+      })
+      .catch(err => {
+          console.log(err)
+      })
+    },
     getMusic: function (val) {
-      this.music = val
-      console.log(val)
+      this.playlists.push(val)
     }
   },
   mounted(){

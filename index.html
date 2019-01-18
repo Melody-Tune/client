@@ -68,24 +68,33 @@
        <!--end form upload music-->
             
           <!--Get song here-->
+<<<<<<< HEAD
           <div class="col s12 m12 l12">
+=======
+          <div class="col s12 m6 l6">
+>>>>>>> upload 2.0
             <div class="row center">
               <div class="card blue-grey darken-1" style="margin-left:10px;">
-                <div class="card-content white-text">
-                  <span class="card-title">Uploaded Music</span>
-                  <p>Artist</p>
-                  <p>Title</p>
+              <span class="card-title">Playlist</span>
+                <div class="card-content white-text" v-for="song in playlists">
+                  <p>{{song.artist}}</p>
+                  <p>{{song.title}}</p>
                   <audio controls>
-                    <source src="" type="audio/mpeg">
+                    <source :src="song.url" type="audio/mpeg">
                   </audio>
-                </div>
-                <div class="card-action">
-                  <a href="#">Get Lyrics<i class="material-icons prefix">music_note</i></a>
-                  <share :music="music"></share>
+                  <div class="card-action" style="margin-left:3rem;">
+                    <a href="#">Get Lyrics<i class="material-icons prefix">music_note</i></a>
+                    <share></share>
+                  </div>
+                  <hr>
                 </div>
               </div>
             </div>
+<<<<<<< HEAD
             <playlist :music="music"></playlist>
+=======
+            </div>
+>>>>>>> upload 2.0
             <!--end get song-->
 
             <!--Get Lyrics here-->
