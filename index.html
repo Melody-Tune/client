@@ -54,67 +54,18 @@
     <!--end Modal Login-->
 
     <!--content-->
+<<<<<<< HEAD
     <div class="row" v-if="localStorageToken">
+=======
+    <div class="row">
+     
+>>>>>>> upload client
       <!--Form upload music-->
-      <div class="col s12 m6 l6">
-        <div class="row">
-          <div class="row">
-            <div class="col s12 m6 l6">
-              <div class="card blue-grey darken-1">
-                <div class="card-content white-text">
-                  <span class="card-title">Upload Music</span>
-                  <form class="col s6 m6 l6">
-                    <div class="row">
-                      <div class="input-field col s12 m6 l6">
-                        <input type="text" class="validate">
-                        <label for="artist">Artist</label>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="input-field col s12 m6 l6">
-                        <input type="text" class="validate">
-                        <label for="title">Title</label>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <form action="#">
-                        <div class="file-field input-field">
-                          <div class="btn">
-                            <span>File</span>
-                            <input type="file">
-                          </div>
-                          <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text">
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </form>
-                </div>
-                <div class="row">
-                  <div class="col s12 m12 l12 center">
-                      <a href="#!" class="modal-close waves-effect waves-green blue-grey lighten-1 btn center">UPLOAD</a>
-                    <div class="preloader-wrapper big active">
-                      <div class="spinner-layer spinner-red-only">
-                        <div class="circle-clipper left">
-                          <div class="circle"></div>
-                        </div>
-                        <div class="gap-patch">
-                          <div class="circle"></div>
-                        </div>
-                        <div class="circle-clipper right">
-                          <div class="circle"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--end form upload music-->
+      <upload-music @newmusic="getMusic"></upload-music>
+       <!--end form upload music-->
             
           <!--Get song here-->
+<<<<<<< HEAD
           <div class="col s12 m12 l12">
             <div class="row center">
               <div class="card blue-grey darken-1" style="margin-left:10px;">
@@ -132,6 +83,11 @@
                 </div>
               </div>
             </div>
+=======
+            <playlist :music="music"></playlist>
+            <!--end get song-->
+
+>>>>>>> upload client
             <!--Get Lyrics here-->
             <get-lyric @get-lyrics = "getLyric"></get-lyric>
             <!--end get lyrics-->
@@ -147,6 +103,8 @@
   <script src="components/share.js"></script>
   <script src="components/login.js"></script>
   <script src="components/register.js"></script>
+  <script src="./components/upload.js"></script>
+  <script src="./components/playlist.js"></script>
   <script src="js/lyric.js"></script>
   <script src="js/main.js"></script>
   <script>
