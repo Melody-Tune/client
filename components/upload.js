@@ -94,6 +94,6 @@ Vue.component('upload-music', {
         },
         uploadMusic: function (url) {
             this.url = url.target.files[0]
-        }
+        },
     }
 })

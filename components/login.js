@@ -51,7 +51,7 @@ Vue.component('login', {
         }
       })
       .then(response => {
-        localStorage.setItem("token", response.data)
+        localStorage.setItem("token", response.data.access_token)
         this.token = response.data
         this.$emit("resettoken", this.token)
         this.inputLogin.email = ""
