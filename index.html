@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Melody Tune</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+    crossorigin="anonymous">
+
+  <!--Materialize cdn-->
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!--end Materialize cdn-->
+</head>
+
+<body>
+  <div id="fb-root">
+    <script>(function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+  </div>
+  <div id="app">
+    <!--Navbar-->
+    <nav>
+      <div class="nav-wrapper blue-grey darken-4">
+        <a href="#" class="brand-logo center">Logo</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li v-if="!localStorageToken"><a href="#modal1" class="waves-effect waves-light modal-trigger amber accent-3 tooltipped" data-position="bottom" data-tooltip="Register here!">Register</a></li>
+          <li v-if="!localStorageToken"><a href="#modal2" class="waves-effect waves-light modal-trigger amber accent-3 tooltipped" data-position="bottom" data-tooltip="Login here!">Login</a></li>
+          <li v-if="localStorageToken"><a href="badges.html" class="waves-effect waves-light amber accent-3" @click.prevent="logout">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!--end Navbar-->
+
+    <!--Home-->
+    <!-- Modal Login -->
+    <register ></register>
+    <login  @resettoken="localStorageToken = $event"></login>
+    <!--end Modal Login-->
+
+    <!--content-->
+    <div class="row" v-if="localStorageToken">
+      <!--Form upload music-->
+      <upload-music @newmusic="getMusic"></upload-music>
+       <!--end form upload music-->
+            
+          <!--Get song here-->
+          <div class="col s12 m6 l6">
+            <div class="row center">
+              <div class="card blue-grey darken-1" style="margin-left:10px;">
+              <span class="card-title">Playlist</span>
+                <div class="card-content white-text" v-for="song in playlists">
+                  <p>{{song.artist}}</p>
+                  <p>{{song.title}}</p>
+                  <audio controls>
+                    <source :src="song.url" type="audio/mpeg">
+                  </audio>
+                  <div class="card-action" style="margin-left:3rem;">
+                    <a href="#" @click.prevent = "getLyric(song.artist, song.title)">Get Lyrics<i class="material-icons prefix">music_note</i></a>
+                    <share :music="song.url"></share>
+                  </div>
+                  <hr>
+                </div>
+              </div>
+            </div>
+            </div>
+            <!--end get song-->
+
+            <!--Get Lyrics here-->
+            <get-lyric @get-lyrics = "getLyric" :thislyric="lyric" :thisartist = "artist" :thistitle = "title"></get-lyric>
+            <!--end get lyrics-->
+          </div>
+        </div>
+      </div>
+    <!--end content-->
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="components/share.js"></script>
+  <script src="components/login.js"></script>
+  <script src="components/register.js"></script>
+  <script src="./components/upload.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+  $(document).ready(function(){
+    $('.modal').modal();
+    $('.tooltipped').tooltip();
+    $('.parallax').parallax();
+  });
+  </script>
+</body>
+
+</html>
