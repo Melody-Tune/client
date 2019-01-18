@@ -7,9 +7,8 @@ Vue.component('get-lyric', {
     <div class="row">
         <div class="card blue-grey darken-1" style="margin-left:10px;">
             <div class="card-content white-text">
-              <span class="card-title">{{title}}</span>
-              <p>By: {{artist}}</p>
-              <button v-on:click.prevent="triggerGetLyric">get lyric</button>
+              <span class="card-title">{{thistitle}}</span>
+              <p>{{thisartist}}</p>
               <div v-html= "thislyric"><p></p></div>
             </div>
           </div>
@@ -18,8 +17,8 @@ Vue.component('get-lyric', {
   `,
   data: function(){
     return{
-      artist: "slipknot",
-      title: "duality"
+      artist: "",
+      title: ""
     }
   },
   methods: {
@@ -35,10 +34,11 @@ var app = new Vue({
   data: {
     message: 'hello from vue',
     localStorageToken: localStorage.getItem("token"),
-    artist: "slipknot",
-    title: "duality",
+    artist: "",
+    title: "",
     playlists: [],
     lyric: "",
+    music: {}
   },
   created () {
     this.getPlaylist()
@@ -48,11 +48,11 @@ var app = new Vue({
       localStorage.clear()
       this.localStorageToken = ""
     },
-    getLyric: function(){
-      console.log('masuk')
+    getLyric: function(artist, title){
+
       let body = {
-        artist: this.artist,
-        title: this.title
+        artist: artist,
+        title: title
       }
       axios
         .post(
@@ -60,8 +60,10 @@ var app = new Vue({
           body
         )
         .then(response => {
+          this.artist = artist
+          this.title = title
           this.lyric = response.data.data
-          console.log(this.lyric)
+   
           
         })
         .catch(error => {
@@ -77,12 +79,14 @@ var app = new Vue({
       })
       .then(({ data }) => {
           this.playlists = data
+
       })
       .catch(err => {
           console.log(err)
       })
     },
     getMusic: function (val) {
+      this.music = val
       this.playlists.push(val)
     }
   },

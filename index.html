@@ -71,8 +71,8 @@
                     <source :src="song.url" type="audio/mpeg">
                   </audio>
                   <div class="card-action" style="margin-left:3rem;">
-                    <a href="#">Get Lyrics<i class="material-icons prefix">music_note</i></a>
-                    <share></share>
+                    <a href="#" @click.prevent = "getLyric(song.artist, song.title)">Get Lyrics<i class="material-icons prefix">music_note</i></a>
+                    <share :music="song.url"></share>
                   </div>
                   <hr>
                 </div>
@@ -97,7 +97,6 @@
   <script src="components/login.js"></script>
   <script src="components/register.js"></script>
   <script src="./components/upload.js"></script>
-  <script src="./components/playlist.js"></script>
   <script src="js/main.js"></script>
   <script>
   $(document).ready(function(){
