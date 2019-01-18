@@ -4,7 +4,8 @@ var app = new Vue({
     message: 'hello from vue',
     localStorageToken: localStorage.getItem("token"),
     artist: "slipknot",
-    title: "duality"
+    title: "duality",
+    music: {}
   },
   methods: {
     logout() {
@@ -30,6 +31,10 @@ var app = new Vue({
         .catch(error => {
           console.log(error)
         })
+    },
+    getMusic: function (val) {
+      this.music = val
+      console.log(val)
     }
   },
   mounted(){
