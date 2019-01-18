@@ -6,7 +6,7 @@ Vue.component('register', {
       <div class="modal-content">
         <div class="row">
           <form class="col s12 m12 l12">
-            <h3>Login</h3>
+            <h3>Register</h3>
             <div class="row">
               <div class="input-field col m12 l12">
                 <i class="material-icons prefix">mail</i>
@@ -17,7 +17,7 @@ Vue.component('register', {
             <div class="row">
               <div class="input-field col s12 m12 l12">
                 <i class="material-icons prefix">lock</i>
-                <input id="icon_telephone" type="tel" class="validate" v-model="inputRegister.password">
+                <input id="icon_telephone" type="password" class="validate" v-model="inputRegister.password">
                 <label for="icon_telephone">Password</label>
               </div>
             </div>
@@ -25,7 +25,7 @@ Vue.component('register', {
         </div>
       </div>
       <div class="modal-footer blue-grey darken-4">
-        <a href="#!" class="modal-close waves-effect waves-green blue-grey lighten-1 btn">Register</a>
+        <a href="#!" class="modal-close waves-effect waves-green blue-grey lighten-1 btn" @click.prevent="register()">Register</a>
       </div>
     </div>
   </div>
@@ -44,7 +44,7 @@ Vue.component('register', {
     register() {
       axios({
         method: "POST",
-        url: `/users/register`,
+        url: `http://localhost:3000/users/register`,
         data: {
           email: this.inputRegister.email,
           password: this.inputRegister.password

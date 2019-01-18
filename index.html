@@ -34,7 +34,6 @@
     </script>
   </div>
   <div id="app">
-  
     <!--Navbar-->
     <nav>
       <div class="nav-wrapper blue-grey darken-4">
@@ -50,12 +49,12 @@
 
     <!--Home-->
     <!-- Modal Login -->
-    <register></register>
-    <login @resetToken="localStorageToken = $event"></login>
+    <register ></register>
+    <login  @resettoken="localStorageToken = $event"></login>
     <!--end Modal Login-->
 
     <!--content-->
-    <div class="row">
+    <div class="row" v-if="localStorageToken">
       <!--Form upload music-->
       <div class="col s12 m6 l6">
         <div class="row">
