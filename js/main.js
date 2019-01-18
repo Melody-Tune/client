@@ -1,11 +1,44 @@
+var url = "http://localhost:3000"
+
+Vue.component('get-lyric', {
+  props: ['thislyric', 'thisartist', 'thistitle'],
+  template: `
+  <div class="col s12 m12 l12">
+    <div class="row">
+        <div class="card blue-grey darken-1" style="margin-left:10px;">
+            <div class="card-content white-text">
+              <span class="card-title">{{thistitle}}</span>
+              <p>{{thisartist}}</p>
+              <div v-html= "thislyric"><p></p></div>
+            </div>
+          </div>
+    </div>
+  </div>
+  `,
+  data: function(){
+    return{
+      artist: "",
+      title: ""
+    }
+  },
+  methods: {
+    triggerGetLyric: function () {
+      this.$emit('get-lyrics')
+    }
+  }
+})
+
+
 var app = new Vue({
   el: `#app`,
   data: {
     message: 'hello from vue',
     localStorageToken: localStorage.getItem("token"),
-    artist: "slipknot",
-    title: "duality",
-    playlists: []
+    artist: "",
+    title: "",
+    playlists: [],
+    lyric: "",
+    music: {}
   },
   created () {
     this.getPlaylist()
@@ -15,11 +48,11 @@ var app = new Vue({
       localStorage.clear()
       this.localStorageToken = ""
     },
-    getLyric: function(){
-      console.log('masuk')
+    getLyric: function(artist, title){
+
       let body = {
-        artist: this.artist,
-        title: this.title
+        artist: artist,
+        title: title
       }
       axios
         .post(
@@ -27,7 +60,10 @@ var app = new Vue({
           body
         )
         .then(response => {
-          console.log(response)
+          this.artist = artist
+          this.title = title
+          this.lyric = response.data.data
+   
           
         })
         .catch(error => {
@@ -43,12 +79,14 @@ var app = new Vue({
       })
       .then(({ data }) => {
           this.playlists = data
+
       })
       .catch(err => {
           console.log(err)
       })
     },
     getMusic: function (val) {
+      this.music = val
       this.playlists.push(val)
     }
   },

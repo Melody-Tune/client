@@ -87,6 +87,8 @@ Vue.component('upload-music', {
                 this.loading = false
                 let music = data.response
                 this.$emit('newmusic', music)
+                this.artist = "",
+                this.title = ""
             })
             .catch(err => {
                 console.log(err)
